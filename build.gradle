@@ -1,0 +1,35 @@
+buildscript {
+	repositories {
+        jcenter()
+    }
+	
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-clover-plugin:0.8.1'
+    }
+}
+
+allprojects {
+  apply plugin: 'clover'
+  
+  repositories {
+    mavenCentral()
+  }
+  
+	dependencies {
+		clover 'com.cenqua.clover:clover:3.2.0'
+	}
+
+  clover {
+    licenseLocation = 'clover.license'  
+  
+    report {
+      html = true
+      pdf = true
+      xml = true
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
